@@ -10,7 +10,7 @@ function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function loginWithPassword() {
+async function loginWithPassword(driver) {
     await driver.findElement(By.name("email")).sendKeys(email);
     await driver.findElement(By.name("password")).sendKeys(password);
 
@@ -19,6 +19,9 @@ async function loginWithPassword() {
             "marginBottom8_f7730b button_b83a05 button_dd4f85 lookFilled_dd4f85 colorBrand_dd4f85 sizeLarge_dd4f85 fullWidth_dd4f85 grow_dd4f85"
         )
     );
+    
+    await delay(5000);
+
     await loginBtn.click();
 
     const authentif = prompt("Write 6 digit code:\n");
@@ -34,7 +37,7 @@ async function loginWithPassword() {
     await confirmBtn.click();
 }
 
-(async function example() {
+async function main() {
     let driver = await new Builder().forBrowser(Browser.SAFARI).build();
     driver.manage().window().setRect({ width: 1280, height: 720 });
 
@@ -44,7 +47,7 @@ async function loginWithPassword() {
         const method = prompt("Do you want to login with QR code ?\n");
 
         if (method === "YES") {
-            await loginWithPassword(prompt);
+            await loginWithPassword(driver);
         }
 
         await driver.wait(until.titleContains("Friends"));
@@ -52,4 +55,6 @@ async function loginWithPassword() {
         prompt("Script ended...");
         await driver.quit();
     }
-})();
+}
+
+main();
