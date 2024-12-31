@@ -19,7 +19,7 @@ async function loginWithPassword(driver) {
             "marginBottom8_f7730b button_b83a05 button_dd4f85 lookFilled_dd4f85 colorBrand_dd4f85 sizeLarge_dd4f85 fullWidth_dd4f85 grow_dd4f85"
         )
     );
-    
+
     await delay(5000);
 
     await loginBtn.click();
@@ -46,7 +46,7 @@ async function main() {
 
         const method = prompt("Do you want to login with QR code ?\n");
 
-        if (method === "YES") {
+        if (method === "NO") {
             await loginWithPassword(driver);
         }
 
